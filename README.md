@@ -2,7 +2,7 @@
 
 Simple ToDo app with simple functionality. Local storage is used to store tasks.
 
-###Technologies
+Technologies
 - ReactJs;
 - Redux;
 - ES6+;
