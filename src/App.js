@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import '../src/Style/style.css'
+import {useSelector} from 'react-redux'
+import Form from './Components/Form'
+import {CompleteTodo, Todo} from './HOC/withTodoList'
+import {
+	addCompleteTodo,
+	addNewTodo,
+	completeTodo,
+	removeCompleteTodo,
+	removeTodo,
+	unCompleteTodo,
+} from './Store/actions'
+import Today from './Components/Today'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const stateForTodo = useSelector(state => state.todo.todo)
+	const stateForCompletedTodo = useSelector(state => state.complete.complete)
+	
+	return (
+			<div className="main">
+				<Today />
+				<Form />
+				<Todo
+					state={stateForTodo}
+					isTrue={true}
+					header={`New todo's`}
+					text={'stateNotCompleteTodo'}
+					addTodoHandler={addCompleteTodo}
+					removeTodoHandler={removeTodo}
+					toggleTodoHandler={completeTodo}
+					removeTodo={removeTodo}
+				/>
+				<CompleteTodo
+					state={stateForCompletedTodo}
+					isTrue={false}
+					header={`Completed todo's`}
+					text={'stateForCompletedTodo'}
+					addTodoHandler={addNewTodo}
+					removeTodoHandler={removeCompleteTodo}
+					toggleTodoHandler={unCompleteTodo}
+					removeTodo={removeCompleteTodo}
+				/>
+			</div>
+	)
 }
 
-export default App;
+export default App
