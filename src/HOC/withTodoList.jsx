@@ -5,11 +5,8 @@ import Todos from '../Components/Todos'
 
 const withTodoList = Component => (props) => {
 	const dispatch = useDispatch()
-	const
-		{
-			state, isTrue, header,
-			addTodoHandler, removeTodoHandler, text,
-			toggleTodoHandler, removeTodo
+	const {
+			state, isTrue, addTodoHandler, removeTodoHandler, text,
 		} = props
 	
 	useEffect(() => {
@@ -23,12 +20,7 @@ const withTodoList = Component => (props) => {
 	})
 	
 	return (
-		<Component
-			state={state}
-			header={header}
-			toggleTodoHandler={toggleTodoHandler}
-			removeTodo={removeTodo}
-		/>
+		<Component {...props}/>
 	)
 }
 
